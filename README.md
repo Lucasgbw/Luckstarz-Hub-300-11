@@ -2,7 +2,7 @@ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao1
 
 local Window = redzlib:MakeWindow({
 
-  Title = "⚜️Luckystarz hub⚜️|UPTADE!",
+  Title = "⚜️Luckystarz hub⚜️|gostosas sem calcinha",
 
   SubTitle = "by Pombadelux, luckystarz",
 
