@@ -12,14 +12,29 @@ local Window = redzlib:MakeWindow({
 
 Window:AddMinimizeButton({
     Button = {
-        Image = "rbxassetid://106740840356090",
+        Image = "rbxassetid://740794290376", -- imagem do botão
         BackgroundTransparency = 0,
-        Size = UDim2.new(0, 77, 0, 77) -- largura e altura: 50x50 pixels
+        Size = UDim2.new(0, 60, 0, 60)
     },
     Corner = {
-        CornerRadius = UDim.new(0, 0) -- cantos quadrados
+        CornerRadius = UDim.new(0, 15) -- deixa arredondado tipo "squirrel"
     }
 })
+
+-- ID do som a ser reproduzido quando o código for executado
+local soundId = "rbxassetid://113190382670194"
+
+-- Função para tocar o som
+local function playSound()
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace -- Coloque no Workspace para garantir que seja ouvido
+    sound:Play()
+end
+
+-- Tocar o som assim que o script for executado
+playSound()
+
 
 local Tab1 = Window:MakeTab({"Player", "sword"})
 
