@@ -35,8 +35,94 @@ end
 -- Tocar o som assim que o script for executado
 playSound()
 
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
 
-local Tab1 = Window:MakeTab({"Player", "sword"})
+local player = Players.LocalPlayer
+
+-- === CONFIG ===
+local LineCount = 4
+local Radius = 7
+local LineLength = 15
+local NeonRed = Color3.fromRGB(255, 0, 60) -- vermelho neon suave
+local Black = Color3.fromRGB(0, 0, 0)
+local LabelText = "bucetinha"
+
+-- === CROSSHAIR OBJECTS ===
+local CrosshairLines = {}
+
+for i = 1, LineCount do
+	local line = Drawing.new("Line")
+	line.Color = NeonRed
+	line.Thickness = 2.5
+	line.Visible = true
+	table.insert(CrosshairLines, line)
+end
+
+local Dot = Drawing.new("Circle")
+Dot.Radius = 3
+Dot.Filled = true
+Dot.Color = NeonRed
+Dot.Visible = true
+
+-- Borda preta pra dar efeito neon
+local DotOutline = Drawing.new("Circle")
+DotOutline.Radius = 5
+DotOutline.Filled = false
+DotOutline.Thickness = 2
+DotOutline.Color = Black
+DotOutline.Visible = true
+
+local Label = Drawing.new("Text")
+Label.Text = LabelText
+Label.Size = 18
+Label.Center = true
+Label.Outline = true
+Label.Color = NeonRed
+Label.Visible = true
+Label.Font = 2
+
+-- === MOUSE HIDING ===
+local function hideMouse()
+	UserInputService.MouseIconEnabled = false
+end
+
+player.CharacterAdded:Connect(function()
+	task.wait(0.5)
+	hideMouse()
+end)
+
+hideMouse()
+
+-- === MAIN ANIMATION LOOP ===
+local angle = 0
+RunService.RenderStepped:Connect(function()
+	local mousePos = UserInputService:GetMouseLocation()
+	local center = Vector2.new(mousePos.X, mousePos.Y)
+
+	for i, line in ipairs(CrosshairLines) do
+		local a = angle + (math.pi * 2 / LineCount) * (i - 1)
+		local from = Vector2.new(center.X + math.cos(a) * Radius, center.Y + math.sin(a) * Radius)
+		local to = Vector2.new(center.X + math.cos(a) * (Radius + LineLength), center.Y + math.sin(a) * (Radius + LineLength))
+		line.From = from
+		line.To = to
+	end
+
+	-- Dot neon (preto por fora + vermelho dentro)
+	Dot.Position = center
+	DotOutline.Position = center
+
+	-- Label abaixo
+	Label.Position = Vector2.new(center.X, center.Y + 28)
+
+	-- animação girando
+	angle += 0.05
+end)
+
+
+local Tab1 = Window:MakeTab({"Player", "user"})
 
 Tab1:AddSlider({
   Name = "velocidade 🏁",
