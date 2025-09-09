@@ -48,7 +48,7 @@ local Radius = 7
 local LineLength = 15
 local NeonRed = Color3.fromRGB(255, 0, 60) -- vermelho neon suave
 local Black = Color3.fromRGB(0, 0, 0)
-local LabelText = "bucetinha"
+local LabelText = "legend"
 
 -- === CROSSHAIR OBJECTS ===
 local CrosshairLines = {}
