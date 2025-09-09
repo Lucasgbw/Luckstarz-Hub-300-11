@@ -12,7 +12,7 @@ local Window = redzlib:MakeWindow({
 
 Window:AddMinimizeButton({
     Button = {
-        Image = "rbxassetid://740794290376", -- imagem do botão
+        Image = "rbxassetid://101476807683502", -- imagem do botão
         BackgroundTransparency = 0,
         Size = UDim2.new(0, 60, 0, 60)
     },
@@ -341,6 +341,10 @@ Tab1:AddButton({"Dex explorer🔱", function(Value)
 
 print("Hello World!")loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-dex-explorer-working-32529"))()
 
+end})
+
+Tab1:AddButton({"painel de colocar musica nos carros (Brookhaven)🔰", function(Value)
+print("Hello World!")loadstring(game:HttpGet("https://pastefy.app/utKST1CY/raw"))()
 end})
 
 Tab1:AddButton({"Abacate executor executor🔱", function(Value)
